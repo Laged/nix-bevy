@@ -44,7 +44,7 @@ cd rust-bevy
 code flake.nix
 ```
 
-### 9. Use your freshly set-up editor to fix a WSL issue - edit flake.nix and include libxkbcommon as nativeBuildInput to row 25, it should be like this
+### 9. Use your freshly set-up editor to fix a WSL issue - edit flake.nix and include libxkbcommon as buildInputs to row 25, idk why it's needed on WSL
 ```
 ...
         buildInputs = with pkgs; [
