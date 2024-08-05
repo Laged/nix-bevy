@@ -7,10 +7,8 @@
 [Download NixOS WSL](https://github.com/nix-community/NixOS-WSL/releases/download/2405.5.4/nixos-wsl.tar.gz)
 
 ### 3. Enable WSL2 on Windows for NixOS-WSL
-(Make sure BIOS virtualization is enabled). Follow these steps:
+(Make sure BIOS virtualization is enabled). Follow these steps in Windows Terminal (with proper file paths):
 [NixOS-WSL](https://github.com/nix-community/NixOS-WSL)
-A. Open Windows Terminal as Administrator.
-B. Run the following commands with proper file paths:
 ```
 cd ~/Downloads
 wsl --install --no-distribution
@@ -44,7 +42,6 @@ cd rust-bevy
 ### 8. Code integration should work out of the box if vscode has WSL extension installed (check popup)
 ```
 code flake.nix
-
 ```
 
 ### 9. Use your freshly set-up editor to fix a WSL issue - edit flake.nix and include libxkbcommon as nativeBuildInput to row 25, it should be like this
