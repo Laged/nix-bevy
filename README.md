@@ -1,10 +1,9 @@
 # Setup Guide for NixOS WSL and Bevy Development
+![image](https://github.com/user-attachments/assets/bfdd938b-d413-4ba0-8993-38ab855de53d)
 
 ## Windows TUNK
-### 1. Download Windows Terminal
+### 1. Download Windows Terminal & NixOS WSL
 [Download Windows Terminal](https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare)
-
-### 2. Download Latest NixOS WSL
 [Download NixOS WSL](https://github.com/nix-community/NixOS-WSL/releases/download/2405.5.4/nixos-wsl.tar.gz)
 
 ### 3. Enable WSL2 on Windows for NixOS-WSL
@@ -44,15 +43,28 @@ cd rust-bevy
 
 ### 8. Code integration should work out of the box if vscode has WSL extension installed (check popup)
 ```
-code .
+code flake.nix
+
 ```
 
-### 9. Project should build outside nix shell via nix run
+### 9. Use your freshly set-up editor to fix a WSL issue - edit flake.nix and include libxkbcommon as nativeBuildInput to row 25, it should be like this
 ```
-nix run .
+...
+        buildInputs = with pkgs; [
+          vulkan-loader
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXrandr
+          alsa-lib
+          udev
+          pkg-config
+          # Add this t. Matti
+          libxkbcommon
+        ];
+...
 ```
 
-### 10. Or via nix-shell and cargo (see flake template for build time optimizations)
+### 10. Project should build "fast" inside nix-shell and cargo (see flake template for build time optimizations)
 ```
 nix develop
 cargo run
